@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>WGSN India Trend Engine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=1.2">
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="hero box hero-box">
+            <h1>THE INDIAN FASHION FORECASTING LAB</h1>
+            <p class="subtitle">
+                forecasting tomorrow’s indian style through culture, identity & digital signals
+            </p>
+        </div>
+
+        <div class="box form-box">
+            <form method="POST">
+                <h2>Forecast Settings</h2>
+
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Region</label>
+                        <select name="region">
+                            <option>Pan India</option>
+                            <option>North India</option>
+                            <option>South India</option>
+                            <option>Metro Cities</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Forecast Year</label>
+                        <select name="year">
+                            <option>2026</option>
+                            <option>2027</option>
+                            <option>2028</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h2>trend signals</h2>
+                <select name="signals" multiple>
+                    <option value="bollywood">bollywood</option>
+                    <option value="kpop">k-pop</option>
+                    <option value="college">college fashion</option>
+                    <option value="regional">regional fashion</option>
+                </select>
+                <p class="small-text">hold ctrl to select multiple</p>
+
+                <button type="submit">Generate Forecast</button>
+            </form>
+        </div>
+
+        {% for trend in forecasts %}
+        <div class="box dashboard-box">
+            <div class="trend-header">
+                <h2 class="trend-title">{{ trend.name }}</h2>
+                <div class="momentum-badge">{{ trend.momentum }}</div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dashboard-left">
+                    <p class="trend-desc">{{ trend.description }}</p>
+                    <p><strong>Business Insight:</strong> {{ trend.business }}</p>
+                    <p><strong>Sources:</strong> {{ trend.sources | join(', ') }}</p>
+
+                    <div class="charts-container">
+                        <div class="chart-wrapper">
+                            <h3>Signal Strength</h3>
+                            <canvas id="barChart-{{ loop.index }}"></canvas>
+                        </div>
+                        <div class="chart-wrapper">
+                            <h3>Demographics</h3>
+                            <canvas id="pieChart-{{ loop.index }}"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="palette-section">
+                        <p><strong>Forecast Palette:</strong></p>
+                        <div class="palette">
+                            {% for color in trend.palette %}
+                            <div class="color" style="background-color: {{ color }};" title="{{ color }}"></div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-right">
+                    <div class="confidence-section">
+                        <p><strong>Trend Confidence:</strong> {{ trend.confidence }}%</p>
+                        <div class="confidence-track">
+                            <div class="confidence-fill" style="width: {{ trend.confidence }}%;"></div>
+                        </div>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="{{ url_for('static', filename='images/' + trend.image) }}" alt="{{ trend.name }}"
+                            class="trend-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart.js Initialization -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const barCtx = document.getElementById('barChart-{{ loop.index }}').getContext('2d');
+                const pieCtx = document.getElementById('pieChart-{{ loop.index }}').getContext('2d');
+
+                const graphData = {{ trend.graph | tojson
+            }};
+            const demoData = {{ trend.demographics | tojson }};
+
+            // Refined luxury color palette for charts
+            const chartColors = [
+                '#cba89a', // baby pink/nude
+                '#8b5a2b', // rich brown
+                '#d2b48c', // beige
+                '#50352d'  // dark brown
+            ];
+
+            new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(graphData),
+                    datasets: [{
+                        label: 'Signal Strength',
+                        data: Object.values(graphData),
+                        backgroundColor: chartColors,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            new Chart(pieCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(demoData),
+                    datasets: [{
+                        data: Object.values(demoData),
+                        backgroundColor: chartColors.slice(0, 3),
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { family: 'Inter' } } }
+                    }
+                }
+            });
+        });
+        </script>
+        {% endfor %}
+
+        <div class="box moodboard-box">
+            <h2>Trends that are Viral on Instagram right now</h2>
+            <div class="moodboards-grid">
+
+                <div class="moodboard-card">
+                    <div class="collage"
+                        onclick="openLightbox('A very Pastel Spring', ['/static/images/summer_mood_1.jpg', '/static/images/spring_mood_2.jpg', '/static/images/spring_mood_3.jpg'])">
+                        <img src="/static/images/summer_mood_1.jpg">
+                        <img src="/static/images/spring_mood_2.jpg">
+                        <img src="/static/images/spring_mood_3.jpg">
+                    </div>
+                    <h3>A very Pastel Spring</h3>
+                </div>
+
+                <div class="moodboard-card">
+                    <div class="collage"
+                        onclick="openLightbox('Iced matcha coquette summer', ['/static/images/spring_mood_1.jpg', '/static/images/summer_mood_2.jpg', '/static/images/summer_mood_3.jpg'])">
+                        <img src="/static/images/spring_mood_1.jpg">
+                        <img src="/static/images/summer_mood_2.jpg">
+                        <img src="/static/images/summer_mood_3.jpg">
+                    </div>
+                    <h3>Iced matcha coquette summer</h3>
+                </div>
+
+                <div class="moodboard-card">
+                    <div class="collage"
+                        onclick="openLightbox('Espresso girl Fall', ['https://placehold.co/400x500/4a3c31/fdfbf7?text=Espresso+Fall+1', 'https://placehold.co/400x500/50352d/fdfbf7?text=Espresso+Fall+2', 'https://placehold.co/400x500/8b5a2b/fdfbf7?text=Espresso+Fall+3'])">
+                        <img src="https://placehold.co/400x500/4a3c31/fdfbf7?text=Espresso+Fall+1">
+                        <img src="https://placehold.co/400x500/50352d/fdfbf7?text=Espresso+Fall+2">
+                        <img src="https://placehold.co/400x500/8b5a2b/fdfbf7?text=Espresso+Fall+3">
+                    </div>
+                    <h3>Espresso girl Fall</h3>
+                </div>
+
+                <div class="moodboard-card">
+                    <div class="collage"
+                        onclick="openLightbox('Winter in Vintage Tones', ['https://placehold.co/400x500/8c7b70/ffffff?text=Vintage+Winter+1', 'https://placehold.co/400x500/a39287/ffffff?text=Vintage+Winter+2', 'https://placehold.co/400x500/e9ddd7/8c7b70?text=Vintage+Winter+3'])">
+                        <img src="https://placehold.co/400x500/8c7b70/ffffff?text=Vintage+Winter+1">
+                        <img src="https://placehold.co/400x500/a39287/ffffff?text=Vintage+Winter+2">
+                        <img src="https://placehold.co/400x500/e9ddd7/8c7b70?text=Vintage+Winter+3">
+                    </div>
+                    <h3>Winter in Vintage Tones</h3>
+                </div>
+
+                <div class="moodboard-card">
+                    <div class="collage"
+                        onclick="openLightbox('Wedding Season Winter', ['https://placehold.co/400x500/d4af37/ffffff?text=Wedding+Winter+1', 'https://placehold.co/400x500/800020/ffffff?text=Wedding+Winter+2', 'https://placehold.co/400x500/fdfbf7/800020?text=Wedding+Winter+3'])">
+                        <img src="https://placehold.co/400x500/d4af37/ffffff?text=Wedding+Winter+1">
+                        <img src="https://placehold.co/400x500/800020/ffffff?text=Wedding+Winter+2">
+                        <img src="https://placehold.co/400x500/fdfbf7/800020?text=Wedding+Winter+3">
+                    </div>
+                    <h3>Wedding Season Winter</h3>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Lightbox HTML -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
+        <div class="lightbox-content">
+            <img src="" class="lightbox-img" id="lightbox-img">
+            <div class="lightbox-prev" onclick="prevImage()">&#10094;</div>
+            <div class="lightbox-next" onclick="nextImage()">&#10095;</div>
+        </div>
+        <div class="lightbox-title" id="lightbox-title"></div>
+    </div>
+
+    <script>
+        let currentImages = [];
+        let currentIndex = 0;
+
+        function openLightbox(title, images) {
+            currentImages = images;
+            currentIndex = 0;
+            document.getElementById('lightbox-title').innerText = title;
+            document.getElementById('lightbox-img').src = currentImages[currentIndex];
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        function nextImage() {
+            if (currentImages.length === 0) return;
+            currentIndex = (currentIndex + 1) % currentImages.length;
+            document.getElementById('lightbox-img').src = currentImages[currentIndex];
+        }
+
+        function prevImage() {
+            if (currentImages.length === 0) return;
+            currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+            document.getElementById('lightbox-img').src = currentImages[currentIndex];
+        }
+    </script>
+
+</body>
+
+</html>

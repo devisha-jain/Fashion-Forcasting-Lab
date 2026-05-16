@@ -1,0 +1,415 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    /* Soft baby pink, off-white, beige gradients as requested. Reduced opacity to show background image more. */
+    background: linear-gradient(rgba(253, 246, 245, 0.45), rgba(245, 238, 230, 0.45)), url('/static/images/fashion-collage.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #4a3c31; /* Rich brown for text */
+}
+
+.container {
+    width: 92%;
+    max-width: 1400px;
+    margin: auto;
+    padding-bottom: 80px;
+}
+
+.hero-box {
+    max-width: 800px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.hero {
+    text-align: center;
+}
+
+.hero h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 110px;
+    font-weight: 400;
+    text-transform: lowercase;
+    color: #3b2a22; /* Darker brown */
+    line-height: 1;
+    letter-spacing: 0px;
+}
+
+.subtitle {
+    margin-top: 15px;
+    font-size: 17px;
+    color: #8b5a2b; /* Soft brown */
+    letter-spacing: 2px;
+    text-transform: lowercase;
+    font-weight: 300;
+}
+
+.box {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    padding: 50px;
+    box-shadow: 0 20px 50px rgba(139, 90, 43, 0.08); /* Soft brown shadow */
+    margin: 40px auto;
+}
+
+.form-box {
+    max-width: 800px;
+}
+
+.box h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 64px;
+    font-weight: 400;
+    margin-bottom: 25px;
+    color: #3b2a22;
+}
+
+.form-grid {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    flex: 1;
+}
+
+label {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 10px;
+    color: #8b5a2b;
+}
+
+select {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(139, 90, 43, 0.2);
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+    color: #4a3c31;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    border-color: #cba89a; /* Baby pink focus */
+    box-shadow: 0 0 0 3px rgba(203, 168, 154, 0.2);
+}
+
+select[multiple] {
+    height: 140px;
+}
+
+.small-text {
+    font-size: 12px;
+    color: #a3897e;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+button {
+    background: #cba89a; /* Baby pink */
+    color: white;
+    border: none;
+    padding: 18px 45px;
+    border-radius: 999px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    margin-top: 30px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    box-shadow: 0 10px 20px rgba(203, 168, 154, 0.3);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    background: #b68f80;
+    box-shadow: 0 15px 25px rgba(203, 168, 154, 0.4);
+}
+
+.dashboard-box {
+    width: 100%;
+}
+
+.trend-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(139, 90, 43, 0.1);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.trend-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 72px;
+    font-weight: 400;
+    color: #3b2a22;
+    margin-bottom: 0 !important;
+}
+
+.momentum-badge {
+    background: #fdfbf7;
+    border: 1px solid #e0cdbb;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #8b5a2b;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+}
+
+.dashboard-left p {
+    line-height: 1.8;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.trend-desc {
+    font-size: 18px !important;
+    color: #3b2a22;
+    font-weight: 300;
+    margin-bottom: 25px !important;
+}
+
+strong {
+    color: #8b5a2b;
+    font-weight: 600;
+}
+
+.charts-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.chart-wrapper {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    height: 250px;
+    position: relative;
+}
+
+.chart-wrapper h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #8b5a2b;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.confidence-section {
+    margin-bottom: 30px;
+}
+
+.confidence-track {
+    background: rgba(139, 90, 43, 0.1);
+    height: 8px;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.confidence-fill {
+    background: #cba89a;
+    height: 100%;
+    border-radius: 999px;
+    transition: width 1.5s ease-out;
+}
+
+.image-wrapper {
+    width: 100%;
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.trend-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.image-wrapper:hover .trend-image {
+    transform: scale(1.05);
+}
+
+.palette-section {
+    margin-top: 30px;
+}
+
+.palette {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.color {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 2px solid white;
+}
+
+/* Moodboard Section */
+.moodboards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.moodboard-card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.collage {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 4px;
+    border-radius: 24px;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 1 / 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.collage:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(139, 90, 43, 0.15);
+}
+
+.collage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.collage img:first-child {
+    grid-row: 1 / span 2;
+}
+
+.moodboard-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #3b2a22;
+    text-align: left;
+}
+
+/* Lightbox Modal */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-img {
+    max-width: 100%;
+    max-height: 85vh;
+    aspect-ratio: 4/5;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+}
+
+.lightbox-prev, .lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 50px;
+    cursor: pointer;
+    user-select: none;
+    padding: 20px;
+}
+
+.lightbox-prev {
+    left: 5%;
+}
+
+.lightbox-next {
+    right: 5%;
+}
+
+.lightbox-title {
+    color: white;
+    font-size: 24px;
+    font-family: 'Great Vibes', cursive;
+    margin-top: 20px;
+    letter-spacing: 2px;
+}

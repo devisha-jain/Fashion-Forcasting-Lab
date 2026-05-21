@@ -6,6 +6,9 @@ import MoodboardSection from "@/components/MoodboardSection";
 import Lightbox from "@/components/Lightbox";
 import Fuse from "fuse.js";
 import { FASHION_KEYWORDS } from "@/components/keywords";
+import Navbar from "@/components/Navbar";
+import AboutSection from "@/components/AboutSection";
+import Footer from "@/components/Footer";
 
 interface Forecast {
   name: string;
@@ -128,9 +131,11 @@ export default function Home() {
 
   return (
     <>
+      <Navbar />
+      
       <div className="container">
         {/* Hero */}
-        <div className="hero box hero-box">
+        <div id="hero" className="hero box hero-box">
           <h1>The Indian Fashion Forecasting Lab</h1>
           <p className="subtitle">
             Forecasting tomorrow&apos;s Indian style through culture, identity &amp;
@@ -139,7 +144,7 @@ export default function Home() {
         </div>
 
         {/* Form */}
-        <div className="box form-box">
+        <div id="forecaster" className="box form-box">
           <form onSubmit={handleSubmit}>
             <h2>Forecast Settings</h2>
 
@@ -170,7 +175,7 @@ export default function Home() {
               </div>
             </div>
 
-            <h2>trend signals</h2>
+            <h2>Trend Signals</h2>
             
             {/* Tag container for active selections */}
             {signals.length > 0 && (
@@ -197,7 +202,7 @@ export default function Home() {
                 <input
                   type="text"
                   className="text-input"
-                  placeholder="Search 70+ aesthetics (e.g. saree, cottagecore, y2k, downtown girl)..."
+                  placeholder="Search 70+ aesthetics (e.g. saree, cottagecore, y2k — press Enter to add)..."
                   value={inputValue}
                   onChange={handleInputChange}
                   onFocus={() => {
@@ -216,14 +221,6 @@ export default function Home() {
                     }
                   }}
                 />
-                <button
-                  type="button"
-                  className="add-tag-btn"
-                  onClick={() => addTag(inputValue)}
-                  disabled={!inputValue.trim()}
-                >
-                  Add Trend
-                </button>
               </div>
 
               {/* Suggestions Dropdown */}
@@ -241,14 +238,14 @@ export default function Home() {
                     ))
                   ) : (
                     <div className="autocomplete-no-results">
-                      No matching keywords found. Press Enter or click &quot;Add Trend&quot; to use anyway!
+                      No matching keywords found. Press Enter to use anyway!
                     </div>
                   )}
                 </div>
               )}
             </div>
             <p className="small-text">
-              Select keywords from suggestions, or type completely custom free-form trends!
+              Select keywords from suggestions, or type free-form and press Enter to add!
             </p>
 
             <button type="submit" disabled={loading || (signals.length === 0 && !inputValue.trim())}>
@@ -281,8 +278,16 @@ export default function Home() {
           ))}
 
         {/* Static Moodboard Section */}
-        <MoodboardSection openLightbox={openLightbox} />
+        <div id="moodboards">
+          <MoodboardSection openLightbox={openLightbox} />
+        </div>
+
+        {/* About Section */}
+        <AboutSection />
       </div>
+
+      {/* Footer */}
+      <Footer />
 
       {/* Lightbox */}
       <Lightbox

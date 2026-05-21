@@ -132,8 +132,8 @@ select[multiple] {
 }
 
 button {
-    background: #cba89a;
-    /* Baby pink */
+    background: #8b5a2b;
+    /* Warm brown to match Add Trend */
     color: white;
     border: none;
     padding: 18px 45px;
@@ -146,13 +146,13 @@ button {
     margin-top: 30px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    box-shadow: 0 10px 20px rgba(203, 168, 154, 0.3);
+    box-shadow: 0 10px 20px rgba(139, 90, 43, 0.12);
 }
 
 button:hover {
     transform: translateY(-3px);
-    background: #b68f80;
-    box-shadow: 0 15px 25px rgba(203, 168, 154, 0.4);
+    background: #6e441d;
+    box-shadow: 0 15px 25px rgba(139, 90, 43, 0.2);
 }
 
 button:disabled {
@@ -886,6 +886,373 @@ strong {
         max-height: 75vh;
     }
 }
+
+
+/* ==========================================================================
+   NAVIGATION BAR STYLING
+   ========================================================================== */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: rgba(253, 246, 245, 0.75);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(139, 90, 43, 0.08);
+    box-shadow: 0 4px 30px rgba(139, 90, 43, 0.03);
+    transition: all 0.3s ease;
+}
+
+.navbar-container {
+    max-width: 1400px;
+    width: 92%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+}
+
+.navbar-logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 32px;
+    font-weight: 400;
+    color: #3b2a22;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.navbar-logo:hover {
+    color: #8b5a2b;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-link {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    color: #4a3c31;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #8b5a2b;
+    transform: none;
+    background: none;
+    box-shadow: none;
+}
+
+.nav-link-about {
+    background: rgba(203, 168, 154, 0.15);
+    color: #8b5a2b;
+    border: 1px solid rgba(203, 168, 154, 0.3);
+    padding: 8px 18px;
+    border-radius: 999px;
+}
+
+.nav-link-about:hover {
+    background: #cba89a;
+    color: #ffffff;
+    border-color: #cba89a;
+    box-shadow: 0 6px 12px rgba(203, 168, 154, 0.15);
+}
+
+/* ==========================================================================
+   ABOUT SECTION STYLING
+   ========================================================================== */
+.about-box {
+    max-width: 1200px;
+    margin: 60px auto 40px auto;
+}
+
+.about-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #4a3c31;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    font-weight: 300;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.about-card {
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(139, 90, 43, 0.02);
+    transition: all 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.8);
+    border-color: #cba89a;
+    box-shadow: 0 15px 35px rgba(203, 168, 154, 0.1);
+}
+
+.card-header-icon {
+    font-size: 20px;
+    color: #cba89a;
+    margin-bottom: 12px;
+}
+
+.about-card h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 600;
+    color: #3b2a22;
+    margin-bottom: 12px;
+}
+
+.about-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4a3c31;
+    font-weight: 300;
+}
+
+.about-stats-panel {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #3c2a21;
+    border-radius: 20px;
+    padding: 35px 20px;
+    color: #ffffff;
+    box-shadow: 0 15px 35px rgba(62, 43, 32, 0.1);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+}
+
+.stat-number {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 38px;
+    font-weight: 500;
+    font-style: italic;
+    color: #cba89a;
+}
+
+.stat-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #fdfbf7;
+    opacity: 0.85;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ==========================================================================
+   FOOTER STYLING
+   ========================================================================== */
+.footer {
+    width: 100%;
+    background: #2b1d16;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 70px 0 40px 0;
+    color: #fdfbf7;
+}
+
+.footer-content {
+    max-width: 1400px;
+    width: 92%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-brand {
+    max-width: 450px;
+}
+
+.footer-logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 40px;
+    color: #cba89a;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.footer-description {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #e0cdbb;
+    font-weight: 300;
+    opacity: 0.85;
+}
+
+.footer-links-group {
+    display: flex;
+    gap: 80px;
+}
+
+.footer-links-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links-col h4 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #cba89a;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.footer-link, .footer-static-link {
+    font-size: 13.5px;
+    color: #e0cdbb;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: 300;
+}
+
+.footer-link {
+    cursor: pointer;
+}
+
+.footer-link:hover {
+    color: #cba89a;
+}
+
+.footer-static-link {
+    opacity: 0.8;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.copyright {
+    font-size: 12px;
+    color: #a3897e;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.back-to-top {
+    background: transparent;
+    border: 1px solid rgba(203, 168, 154, 0.3);
+    color: #cba89a;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: none;
+    box-shadow: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0;
+}
+
+.back-to-top:hover {
+    background: rgba(203, 168, 154, 0.1);
+    color: #ffffff;
+    border-color: #cba89a;
+    transform: translateY(-2px);
+    box-shadow: none;
+}
+
+/* ==========================================================================
+   NAVIGATION BAR & ABOUT RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 900px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 0;
+    }
+
+    .navbar-links {
+        gap: 20px;
+    }
+
+    .about-stats-panel {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .stat-divider {
+        width: 40px;
+        height: 1px;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer-links-group {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 15px;
+    }
+}
+
 
 /* ==========================================================================
    WGSN PREMIUM BRANDING & CARD LAYOUT SYSTEM (MATCHING SCREENSHOTS)

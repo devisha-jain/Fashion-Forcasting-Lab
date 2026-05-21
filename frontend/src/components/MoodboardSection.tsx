@@ -11,7 +11,7 @@ export default function MoodboardSection({
 }: MoodboardSectionProps) {
   return (
     <div className="box moodboard-box">
-      <h2>Trends that are Viral on Instagram right now</h2>
+      <h2>Social Trend Report: Instagram Edition</h2>
       <div className="moodboards-grid">
         {/* A very Pastel Spring */}
         <div className="moodboard-card">

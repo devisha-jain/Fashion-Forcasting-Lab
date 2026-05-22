@@ -1,9 +1,16 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import os
+import sys
+
+# Ensure backend directory is in sys.path so imports work regardless of working directory
+backend_dir = os.path.dirname(os.path.abspath(__file__))
+if backend_dir not in sys.path:
+    sys.path.insert(0, backend_dir)
+
 from trend_engine import generate_forecast
 import json
 import hashlib
-import os
 from dotenv import load_dotenv
 
 load_dotenv()

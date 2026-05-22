@@ -1,0 +1,2 @@
+# Fallback to backend requirements for Render deployments when Root Directory is not set to backend/
+-r backend/requirements.txt

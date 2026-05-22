@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: wgsn-fashion-engine-backend
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: UPSTASH_REDIS_URL
+        sync: false
+      - key: UPSTASH_REDIS_TOKEN
+        sync: false
+      - key: UNSPLASH_ACCESS_KEY
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false

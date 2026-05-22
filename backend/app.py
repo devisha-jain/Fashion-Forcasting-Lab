@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 from trend_engine import generate_forecast
 import json
 import hashlib
@@ -8,6 +9,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
+
+# Restrict CORS to ALLOWED_ORIGINS to prevent unauthorized access in production
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "*")
+if allowed_origins != "*":
+    origins = [origin.strip() for origin in allowed_origins.split(",")]
+    CORS(app, origins=origins)
+    print(f"🔒 CORS enabled for origins: {origins}")
+else:
+    CORS(app, origins="*")
+    print("⚠️ CORS enabled for all origins (*)")
 
 # Connect to Upstash Redis (optional — runs without it)
 try:
@@ -44,18 +55,17 @@ def get_cache_key(region, year, signals):
     return f"forecast:{hashlib.md5(raw.encode()).hexdigest()}"
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET"])
 def home():
-    forecasts = []
-
-    if request.method == "POST":
-        region = request.form["region"]
-        year = request.form["year"]
-        signals = request.form.getlist("signals")
-
-        forecasts = generate_forecast(region, year, signals)
-
-    return render_template("index.html", forecasts=forecasts)
+    """Root JSON endpoint showing backend service health status."""
+    return jsonify({
+        "status": "active",
+        "service": "Fashion Forecasting Lab Backend API",
+        "framework": "Flask / Python",
+        "endpoints": {
+            "/api/forecast": "POST - Core forecasting analysis engine"
+        }
+    })
 
 
 @app.route("/api/forecast", methods=["POST"])

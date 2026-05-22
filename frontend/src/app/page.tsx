@@ -112,7 +112,8 @@ export default function Home() {
     try {
       // Pass the exact/latest search term as a URL query parameter for integration pattern
       const latestTerm = activeSignals[activeSignals.length - 1];
-      const url = `/api/forecast?signal=${encodeURIComponent(latestTerm)}`;
+      const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const url = `${apiBase}/api/forecast?signal=${encodeURIComponent(latestTerm)}`;
 
       const res = await fetch(url, {
         method: "POST",

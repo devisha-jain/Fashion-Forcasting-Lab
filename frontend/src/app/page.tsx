@@ -90,7 +90,7 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    let activeSignals = [...signals];
+    const activeSignals = [...signals];
     
     // Automatically add whatever is left in the text box if not empty
     if (inputValue.trim()) {

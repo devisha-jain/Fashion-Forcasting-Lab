@@ -134,7 +134,7 @@ export default function TrendCard({ trend, index, cached }: TrendCardProps) {
     // Custom inline plugin to draw labels directly on top of the points
     const datalabelsPlugin = {
       id: "datalabels",
-      afterDatasetsDraw(chart: any) {
+      afterDatasetsDraw(chart: ChartJS) {
         const { ctx, data } = chart;
         ctx.save();
         ctx.font = "bold 11px Inter, sans-serif";
@@ -142,9 +142,12 @@ export default function TrendCard({ trend, index, cached }: TrendCardProps) {
         ctx.textAlign = "center";
         ctx.textBaseline = "bottom";
 
-        chart.getDatasetMeta(0).data.forEach((point: any, idx: number) => {
+        chart.getDatasetMeta(0).data.forEach((point: unknown, idx: number) => {
+          const p = point as { x: number; y: number };
           const value = data.datasets[0].data[idx];
-          ctx.fillText(value.toString(), point.x, point.y - 8);
+          if (value !== undefined && value !== null) {
+            ctx.fillText(value.toString(), p.x, p.y - 8);
+          }
         });
         ctx.restore();
       }

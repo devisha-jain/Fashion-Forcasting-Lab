@@ -371,36 +371,38 @@ export default function TrendCard({ trend, index, cached }: TrendCardProps) {
           {/* Trend Dynamic WGSN Report Description */}
           <p className="premium-trend-desc">{trend.description}</p>
 
-          {/* Two-Column Trajectory & Details Layout */}
-          <div className="premium-dashboard-grid">
-            {/* Left Column: 3-Year Trajectory */}
-            <div className="trajectory-column">
-              <span className="trajectory-title">3-YEAR TRAJECTORY</span>
-              <div className="trajectory-chart-container">
+          {/* Stacked Layout: Charts first one after another, then details/messages one after another */}
+          <div className="premium-dashboard-stack">
+            {/* Chart 1: 3-Year Trajectory */}
+            <div className="premium-chart-card trajectory-card">
+              <h3 className="chart-card-title">3-Year Trajectory</h3>
+              <div className="chart-canvas-container">
                 <canvas ref={lineRef} id={`lineChart-${index}`}></canvas>
               </div>
-
-              {/* Bar and Pie Charts added below the 3-Year Trajectory */}
-              {(trend.graph || trend.demographics) && (
-                <div className="charts-container">
-                  {trend.graph && Object.keys(trend.graph).length > 0 && (
-                    <div className="chart-wrapper">
-                      <h3>Signal Strength</h3>
-                      <canvas ref={barRef} id={`barChart-${index}`}></canvas>
-                    </div>
-                  )}
-                  {trend.demographics && Object.keys(trend.demographics).length > 0 && (
-                    <div className="chart-wrapper">
-                      <h3>Demographics</h3>
-                      <canvas ref={pieRef} id={`pieChart-${index}`}></canvas>
-                    </div>
-                  )}
-                </div>
-              )}
             </div>
 
-            {/* Right Column: WGSN Styled Details Stack */}
-            <div className="details-column">
+            {/* Chart 2: Signal Strength */}
+            {trend.graph && Object.keys(trend.graph).length > 0 && (
+              <div className="premium-chart-card signal-card">
+                <h3 className="chart-card-title">Signal Strength</h3>
+                <div className="chart-canvas-container">
+                  <canvas ref={barRef} id={`barChart-${index}`}></canvas>
+                </div>
+              </div>
+            )}
+
+            {/* Chart 3: Demographics */}
+            {trend.demographics && Object.keys(trend.demographics).length > 0 && (
+              <div className="premium-chart-card demographics-card">
+                <h3 className="chart-card-title">Demographics</h3>
+                <div className="chart-canvas-container">
+                  <canvas ref={pieRef} id={`pieChart-${index}`}></canvas>
+                </div>
+              </div>
+            )}
+
+            {/* WGSN Styled Details Stack */}
+            <div className="details-stack">
               {/* Box 1: Target Demographic */}
               {trend.targetDemographic && (
                 <div className="detail-card">

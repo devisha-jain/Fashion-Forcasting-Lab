@@ -220,18 +220,20 @@ strong {
 
 .charts-container {
     display: flex;
-    gap: 30px;
-    margin-top: 40px;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 25px;
 }
 
 .chart-wrapper {
-    flex: 1;
     background: rgba(255, 255, 255, 0.5);
     padding: 20px;
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.4);
-    height: 250px;
+    height: 240px !important;
     position: relative;
+    width: 100%;
+    min-width: 0;
 }
 
 .chart-wrapper h3 {
@@ -896,10 +898,9 @@ strong {
     top: 0;
     z-index: 1000;
     width: 100%;
-    background: rgba(253, 246, 245, 0.75);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(139, 90, 43, 0.08);
-    box-shadow: 0 4px 30px rgba(139, 90, 43, 0.03);
+    background: #2b1d16;
+    border-bottom: 1px solid rgba(203, 168, 154, 0.15);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
 }
 
@@ -917,13 +918,13 @@ strong {
     font-family: 'Great Vibes', cursive;
     font-size: 32px;
     font-weight: 400;
-    color: #3b2a22;
+    color: #cba89a;
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
 .navbar-logo:hover {
-    color: #8b5a2b;
+    color: #e0cdbb;
 }
 
 .navbar-links {
@@ -938,7 +939,7 @@ strong {
     padding: 0;
     margin: 0;
     box-shadow: none;
-    color: #4a3c31;
+    color: #e0cdbb;
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     font-weight: 500;
@@ -949,7 +950,7 @@ strong {
 }
 
 .nav-link:hover {
-    color: #8b5a2b;
+    color: #ffffff;
     transform: none;
     background: none;
     box-shadow: none;
@@ -957,8 +958,8 @@ strong {
 
 .nav-link-about {
     background: rgba(203, 168, 154, 0.15);
-    color: #8b5a2b;
-    border: 1px solid rgba(203, 168, 154, 0.3);
+    color: #cba89a;
+    border: 1px solid rgba(203, 168, 154, 0.35);
     padding: 8px 18px;
     border-radius: 999px;
 }
@@ -968,6 +969,86 @@ strong {
     color: #ffffff;
     border-color: #cba89a;
     box-shadow: 0 6px 12px rgba(203, 168, 154, 0.15);
+}
+
+/* ==========================================================================
+   MOBILE HAMBURGER MENU STYLING
+   ========================================================================== */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.hamburger-menu .bar {
+    width: 100%;
+    height: 2px;
+    background-color: #cba89a;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Hamburger Open Animation */
+.hamburger-menu.open .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-menu.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.open .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Nav Menu Dropdown */
+.mobile-nav-menu {
+    display: none;
+    flex-direction: column;
+    background: #2b1d16;
+    border-top: 1px solid rgba(203, 168, 154, 0.15);
+    border-bottom: 1px solid rgba(203, 168, 154, 0.15);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+    padding: 0 4%;
+}
+
+.mobile-nav-menu.open {
+    max-height: 250px;
+    padding: 15px 4% 25px 4%;
+}
+
+.mobile-nav-link {
+    background: none;
+    border: none;
+    color: #e0cdbb;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 12px 0;
+    width: 100%;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(203, 168, 154, 0.05);
+    transition: color 0.2s ease;
+}
+
+.mobile-nav-link:last-child {
+    border-bottom: none;
+}
+
+.mobile-nav-link:hover {
+    color: #ffffff;
 }
 
 /* ==========================================================================
@@ -1215,16 +1296,6 @@ strong {
 }
 
 @media (max-width: 768px) {
-    .navbar-container {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px 0;
-    }
-
-    .navbar-links {
-        gap: 20px;
-    }
-
     .about-stats-panel {
         flex-direction: column;
         gap: 25px;
@@ -1261,9 +1332,10 @@ strong {
 .dashboard-box.premium-card {
     padding: 0 !important;
     overflow: hidden !important;
-    background: #ffffff !important;
+    background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(30px) !important;
     border-radius: 24px !important;
-    border: 1px solid rgba(139, 90, 43, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
     box-shadow: 0 20px 45px rgba(62, 43, 32, 0.05) !important;
     margin-bottom: 45px;
 }
@@ -1380,43 +1452,83 @@ strong {
     margin-bottom: 5px;
 }
 
-/* Two-column layout for Trajectory & Demographics/Seasons */
-.premium-dashboard-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 50px;
-}
-
-.trajectory-column {
+/* Responsive stack/grid layout for Trajectory, Charts & Details */
+.premium-dashboard-stack {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-}
-
-.trajectory-title {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 15px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #8b5a2b;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.trajectory-chart-container {
+    gap: 30px;
     width: 100%;
-    height: 180px;
-    position: relative;
 }
 
-.details-column {
+/* Beautiful two-row desktop grid layout for tidy large screens */
+@media (min-width: 1025px) {
+    .premium-dashboard-stack {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.3fr);
+        gap: 30px;
+    }
+    
+    .trajectory-card {
+        grid-column: 1 / span 2;
+        grid-row: 1;
+    }
+    
+    .signal-card {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    
+    .demographics-card {
+        grid-column: 2;
+        grid-row: 2;
+    }
+    
+    .details-stack {
+        grid-column: 3;
+        grid-row: 1 / span 2;
+    }
+}
+
+.premium-chart-card {
+    background: rgba(255, 255, 255, 0.45) !important;
+    backdrop-filter: blur(30px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.6) !important;
+    border-radius: 24px !important;
+    padding: 30px !important;
+    box-shadow: 0 15px 35px rgba(62, 43, 32, 0.03) !important;
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.chart-card-title {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    color: #8b5a2b !important;
+    margin-bottom: 20px !important;
+    text-align: center !important;
+}
+
+.chart-canvas-container {
+    height: 240px !important;
+    position: relative;
+    width: 100%;
+}
+
+.details-stack {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 100%;
 }
 
 .detail-card {
-    background: #fcf9f5;
+    background: rgba(253, 249, 245, 0.6);
     border-radius: 16px;
     padding: 24px;
     border: 1px solid rgba(139, 90, 43, 0.05);
@@ -1530,33 +1642,155 @@ strong {
     transform: scale(1.04);
 }
 
-/* Premium card mobile responsive adaptivity */
-@media (max-width: 768px) {
+/* Custom Canvas Scaling Fix */
+canvas {
+    max-width: 100% !important;
+}
+
+/* Tier 1 — Tablets & Split Screens (iPad Pro, standard split screens) */
+@media (max-width: 1250px) {
     .premium-header {
-        padding: 24px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
+        padding: 26px 30px !important;
+    }
+    
+    .premium-title {
+        font-size: 32px !important;
+        line-height: 1.25 !important;
+    }
+    
+    .premium-score-val {
+        font-size: 52px !important;
+    }
+    
+    .detail-card {
+        padding: 20px !important;
+    }
+}
+
+/* Tier 1.5 — Portrait Tablets & Narrow Split Screens (iPad portrait, small windows) */
+@media (max-width: 768px) {
+    .detail-card {
+        padding: 18px !important;
+    }
+}
+
+/* Tier 2 — Mobile Devices (iPhone 11, small split screens) */
+@media (max-width: 580px) {
+    /* Navbar Hamburger Adaptivity */
+    .desktop-only {
+        display: none !important;
+    }
+    
+    .hamburger-menu {
+        display: flex !important;
+    }
+    
+    .mobile-nav-menu {
+        display: flex !important;
+    }
+    
+    .navbar-container {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 15px 0 !important;
+        gap: 0 !important;
+    }
+    
+    .navbar-logo {
+        font-size: 23px !important;
+    }
+
+    /* Premium card responsive details */
+    .premium-header {
+        padding: 22px 20px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
     }
     
     .premium-header-right {
-        align-self: flex-start;
-        text-align: left;
-        align-items: flex-start;
+        align-self: flex-start !important;
+        text-align: left !important;
+        align-items: flex-start !important;
+        gap: 4px !important;
+    }
+    
+    .premium-title {
+        font-size: 25px !important;
+        line-height: 1.25 !important;
+    }
+    
+    .premium-score-val {
+        font-size: 42px !important;
     }
     
     .premium-body {
-        padding: 24px;
+        padding: 20px !important;
     }
     
-    .premium-dashboard-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
+    .premium-trend-desc {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 5px !important;
     }
     
+    .chart-wrapper h3 {
+        font-size: 11px !important;
+        margin-bottom: 6px !important;
+        letter-spacing: 0.5px !important;
+    }
+    
+    .detail-card {
+        padding: 16px !important;
+        border-radius: 12px !important;
+    }
+    
+    .detail-card-header {
+        font-size: 13px !important;
+        margin-bottom: 6px !important;
+    }
+    
+    .detail-card-text {
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+    }
+
+    .premium-invest-panel {
+        padding: 20px 16px !important;
+        gap: 10px !important;
+        border-radius: 12px !important;
+    }
+    
+    .premium-invest-reason {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+    }
+    
+    .premium-invest-risk {
+        font-size: 12px !important;
+        margin-top: 4px !important;
+    }
+    
+    /* Keep style references in a neat compact 3-column row on mobile */
     .style-ref-row {
-        grid-template-columns: 1fr;
-        gap: 15px;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+    }
+    
+    .style-ref-card {
+        border-radius: 10px !important;
+    }
+
+    .premium-chart-card {
+        padding: 16px !important;
+        border-radius: 16px !important;
+    }
+    
+    .chart-card-title {
+        font-size: 13px !important;
+        margin-bottom: 12px !important;
+        letter-spacing: 1px !important;
     }
 }
 
